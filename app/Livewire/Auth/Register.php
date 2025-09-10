@@ -32,16 +32,16 @@ class Register extends Component
 
         $user = User::create([
             'name' => $validated['name'],
-            'cpf' => $validated['cpf'],
+            'cpf_cnpj' => $validated['cpf'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'tipo' => 'Cliente', // Valor padrão
-            'saldo' => 0,
+            'type' => 'common',
+            'balance' => 0,
         ]);
 
         Auth::login($user);
 
-        return $this->redirect(route('dashboard'), navigate: true);
+        return $this->redirect(route('home'), navigate: true);
     }
 
     public function render()
