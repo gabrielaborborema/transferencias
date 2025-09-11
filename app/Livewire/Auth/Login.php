@@ -27,7 +27,7 @@ class Login extends Component
     {
         $validated = $this->validate();
 
-        if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+        if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']], $validated['remember'])) {
 
             session()->regenerate();
 
@@ -35,8 +35,8 @@ class Login extends Component
         }
 
         $this->notification()->error(
-            $title = 'Authentication Failed',
-            $description = 'Invalid credentials.'
+            title: 'Authentication Failed',
+            description: 'Invalid Credentials.'
         );
     }
 

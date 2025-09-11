@@ -7,18 +7,16 @@ use App\Http\Controllers\LogoutController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', Register::class)->name('register');
-    Route::get('/login', Login::class)->name('login');
+    Route::get('login', Login::class)->name('login');
+    Route::get('/', fn() => redirect()->route('login'));
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/', fn() => redirect()->route('home'));
+
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
 
     Route::post('/logout', LogoutController::class)->name('logout');
-});
-
-
-Route::get('/', function () {
-    return view('welcome');
 });

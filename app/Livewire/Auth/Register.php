@@ -15,8 +15,11 @@ class Register extends Component
     #[Rule('required|string|max:255')]
     public string $name = '';
 
-    #[Rule('required|string|max:18|unique:users,cpf')]
-    public string $cpf = '';
+    #[Rule('required|in:store,common')]
+    public string $type = 'common';
+
+    #[Rule('required|string|max:18|cpf_ou_cnpj|unique:users,cpf_cnpj')]
+    public string $cpf_cnpj = '';
 
     #[Rule('required|string|email|max:255|unique:users,email')]
     public string $email = '';
@@ -32,10 +35,10 @@ class Register extends Component
 
         $user = User::create([
             'name' => $validated['name'],
-            'cpf_cnpj' => $validated['cpf'],
+            'cpf_cnpj' => $validated['cpf_cnpj'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'type' => 'common',
+            'type' => $validated['type'],
             'balance' => 0,
         ]);
 
