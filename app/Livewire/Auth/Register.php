@@ -12,19 +12,27 @@ use App\Models\User;
 #[Layout('components.layouts.app')]
 class Register extends Component
 {
-    #[Rule('required|string|max:255')]
+    #[Rule('required', message: '*Campo obrigatório')]
+    #[Rule('max:255', message: '*Máximo de 255 caracteres')]
     public string $name = '';
 
-    #[Rule('required|in:store,common')]
+    #[Rule('required', message: '*Campo obrigatório')]
+    #[Rule('in:store,common', message: '*Tipo de usuário inválido')]
     public string $type = 'common';
 
-    #[Rule('required|string|max:18|cpf_ou_cnpj|unique:users,cpf_cnpj')]
+    #[Rule('required', message: '*Campo obrigatório')]
+    #[Rule('cpf_ou_cnpj', message: '*Valor do CPF/CNPJ inválido')]
+    #[Rule('unique:users,cpf_cnpj', message: '*CPF/CNPJ já cadastrado')]
     public string $cpf_cnpj = '';
 
-    #[Rule('required|string|email|max:255|unique:users,email')]
+    #[Rule('required', message: '* Campo obrigatório')]
+    #[Rule('max:255', message: '* Máximo de 255 caracteres')]
+    #[Rule('email', message: '* Email inválido')]
+    #[Rule('unique:users,email', message: '* Email já cadastrado')]
     public string $email = '';
 
-    #[Rule('required|string|confirmed')]
+    #[Rule('required', message: '* Campo obrigatório')]
+    #[Rule('confirmed', message: '* Senha de confirmação inválida')]
     public string $password = '';
 
     public string $password_confirmation = '';

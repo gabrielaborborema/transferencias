@@ -16,11 +16,11 @@ class UserFactory extends Factory
         $name = '';
 
         if ($type === 'store') {
-            $cpfCnpj = $this->faker->unique()->cnpj();
+            $cpfCnpj = $this->faker->unique()->cnpj(false);
             $name = $this->faker->company();
         } else {
-            $cpfCnpj = $this->faker->unique()->cpf();
-            $name = $this->faker->name();
+            $cpfCnpj = $this->faker->unique()->cpf(false);
+            $name = $this->faker->name(); 
         }
 
         return [

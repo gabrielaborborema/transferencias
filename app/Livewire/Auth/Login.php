@@ -14,10 +14,11 @@ class Login extends Component
 {
     use WireUiActions;
 
-    #[Rule('required|email')]
+    #[Rule('required', message: '*Campo obrigatório')]
+    #[Rule('email', message: '*Email inválido')]
     public string $email = '';
 
-    #[Rule('required')]
+    #[Rule('required', message: '*Campo obrigatório')]
     public string $password = '';
 
     #[Rule('boolean')]
@@ -35,8 +36,8 @@ class Login extends Component
         }
 
         $this->notification()->error(
-            title: 'Authentication Failed',
-            description: 'Invalid Credentials.'
+            title: 'Falha na autenticação',
+            description: 'Credenciais inválidas'
         );
     }
 
