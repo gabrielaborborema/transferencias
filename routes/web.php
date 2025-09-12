@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\Register;
+use App\Livewire\Home;
 use App\Livewire\Auth\Login;
 use App\Http\Controllers\LogoutController;
 
@@ -14,9 +15,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', fn() => redirect()->route('home'));
 
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/home', Home::class)->name('home');
 
     Route::post('/logout', LogoutController::class)->name('logout');
 });
