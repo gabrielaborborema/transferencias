@@ -32,13 +32,7 @@ class TransactionService
         $response = Http::get('https://util.devi.tools/api/v2/authorize');
 
         if ($response->failed()) {
-            throw new Exception('Serviço de autorização indisponível');
-        }
-
-        $data = $response->json();
-
-        if (empty($data['data']['authorization'])) {
-            throw new Exception('Transferência não autorizada');
+            throw new Exception('Transação não autorizada');
         }
 
         DB::transaction(function () use ($sender, $receiver, $senderBalanceDecimal, $receiverBalanceDecimal, $amountDecimal) {
@@ -48,7 +42,7 @@ class TransactionService
             $sender->update(['balance' => $newSenderBalance]);
             $receiver->update(['balance' => $newReceiverBalance]);
 
-            NotifyEmail::dispatch($sender, $receiver, (string) $amountDecimal);
+            NotifyEmail::dispatch($sender, $receiver, (string) $amountDecimal)->afterCommit();
         });
     }
 }
