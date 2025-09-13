@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\NotifyEmail;
 use App\Models\User;
 use Brick\Math\BigDecimal;
 use Exception;
@@ -46,6 +47,8 @@ class TransactionService
 
             $sender->update(['balance' => $newSenderBalance]);
             $receiver->update(['balance' => $newReceiverBalance]);
+
+            NotifyEmail::dispatch($sender, $receiver, (string) $amountDecimal);
         });
     }
 }
