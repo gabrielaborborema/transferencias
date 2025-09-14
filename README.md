@@ -53,7 +53,7 @@ Para gerar as tabelas no banco da dados rode:
 Para funcionar o sistema de notificação, é preciso executar os workers.
 Abra outro terminal e rode:
 ```
-./vendor/bin/sail artisan queue:worker
+./vendor/bin/sail artisan queue:work
 ```
 
 ## 7. Acesse a aplicação
