@@ -48,7 +48,15 @@ Para gerar as tabelas no banco da dados rode:
 ./vendor/bin/sail artisan migrate:fresh --seed
 ```
 
-## 6. Acesse a aplicação
+## 6. Execute os workers
+
+Para funcionar o sistema de notificação, é preciso executar os workers.
+Abra outro terminal e rode:
+```
+./vendor/bin/sail artisan queue:worker
+```
+
+## 7. Acesse a aplicação
 
 A aplicação vai estar rodando na porta 8080. Basta acessar http://localhost:8080.
 
