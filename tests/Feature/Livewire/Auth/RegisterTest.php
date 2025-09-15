@@ -12,7 +12,7 @@ it('renders the registration page successfully', function () {
         ->assertSeeLivewire('auth.register');
 });
 
-it('successfuly registers a new user with valid data', function () {
+it('registers a new user with valid data successfuly', function () {
     Livewire::test(Register::class)
         ->set('name', 'Teste')
         ->set('cpf_cnpj', '27764236080')
@@ -31,7 +31,7 @@ it('successfuly registers a new user with valid data', function () {
     ]);
 });
 
-it('dynamically show cnpj/cpf field', function () {
+it('shows cnpj/cpf field dynamically', function () {
     Livewire::test(Register::class)
         ->assertSee('CPF')
         ->assertDontSee('CNPJ')
