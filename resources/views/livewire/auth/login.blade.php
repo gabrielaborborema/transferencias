@@ -15,11 +15,6 @@
             label="Senha"
             placeholder="Sua senha" />
 
-        <x-checkbox
-            id="remember"
-            wire:model="remember"
-            label="Lembrar-me" />
-
         <x-button
             type="submit"
             label="Entrar"

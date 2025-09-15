@@ -9,7 +9,7 @@ class LogoutController extends Controller
 {
     public function __invoke(Request $request)
     {
-        Auth::logout();
+        Auth::logoutCurrentDevice();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
